@@ -9,16 +9,19 @@
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
     "dev": "sanity dev",
-    "start": "sanity start"
+    "start": "sanity start",
+    "typegen": "sanity schemas extract --force && sanity typegen generate"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^6.13.1",
+    "@sanity/icons": "^5.2.1",
+    "@sanity/locale-ja-jp": "^1.1.40",
+    "@sanity/vision": "^6.13.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "sanity": "^6.13.1",
+    "sanity": "^6.13.2",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
