@@ -1,5 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {DocumentTextIcon} from '@sanity/icons/DocumentText'
+import {japaneseSlugify} from '../../src/lib/japaneseSlugify'
 
 export const news = defineType({
   name: 'news',
@@ -17,8 +18,21 @@ export const news = defineType({
       name: 'slug',
       title: 'スラッグ',
       type: 'slug',
-      options: {source: 'title'},
-      validation: (rule) => rule.required(),
+      options: {source: 'title', slugify: japaneseSlugify},
+      validation: (rule) =>
+        rule.required().custom(async (slug, context) => {
+          if (!slug?.current) return true
+
+          const client = context.getClient({apiVersion: '2026-02-01'})
+          const id = context.document?._id?.replace(/^drafts\./, '')
+
+          const existing = await client.fetch(
+            `count(*[_type == "news" && slug.current == $slug && _id != $id])`,
+            {slug: slug.current, id},
+          )
+
+          return existing === 0 || 'このスラッグは既に使用されています'
+        }),
     }),
     defineField({
       name: 'publishedAt',
