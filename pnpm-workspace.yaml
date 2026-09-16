@@ -1,12 +1,13 @@
 allowBuilds:
   esbuild: true
 minimumReleaseAgeExclude:
-  - '@sanity/access-ui@6.13.2 || 6.14.0'
-  - '@sanity/diff@6.13.2 || 6.14.0'
-  - '@sanity/mutator@6.13.2 || 6.14.0'
-  - '@sanity/schema@6.13.2 || 6.14.0'
-  - '@sanity/types@6.13.2 || 6.14.0'
-  - '@sanity/util@6.13.2 || 6.14.0'
-  - '@sanity/validation@6.13.2 || 6.14.0'
-  - '@sanity/vision@6.13.2 || 6.14.0'
-  - sanity@6.13.2 || 6.14.0
+  - '@sanity/access-ui@6.13.2 || 6.14.0 || 6.14.1'
+  - '@sanity/diff@6.13.2 || 6.14.0 || 6.14.1'
+  - '@sanity/mutator@6.13.2 || 6.14.0 || 6.14.1'
+  - '@sanity/schema@6.13.2 || 6.14.0 || 6.14.1'
+  - '@sanity/types@6.13.2 || 6.14.0 || 6.14.1'
+  - '@sanity/util@6.13.2 || 6.14.0 || 6.14.1'
+  - '@sanity/validation@6.13.2 || 6.14.0 || 6.14.1'
+  - '@sanity/vision@6.13.2 || 6.14.0 || 6.14.1'
+  - sanity@6.13.2 || 6.14.0 || 6.14.1
+  - '@portabletext/sanity-bridge@4.1.0'
