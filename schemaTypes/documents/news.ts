@@ -24,11 +24,12 @@ export const news = defineType({
           if (!slug?.current) return true
 
           const client = context.getClient({apiVersion: '2026-02-01'})
-          const id = context.document?._id?.replace(/^drafts\./, '')
+          const publishedId = context.document?._id?.replace(/^drafts\./, '')
+          const draftId = `drafts.${publishedId}`
 
           const existing = await client.fetch(
-            `count(*[_type == "news" && slug.current == $slug && _id != $id])`,
-            {slug: slug.current, id},
+            `count(*[_type == "news" && slug.current == $slug && !(_id in [$publishedId, $draftId])])`,
+            {slug: slug.current, publishedId, draftId},
           )
 
           return existing === 0 || 'このスラッグは既に使用されています'
