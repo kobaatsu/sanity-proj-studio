@@ -18,4 +18,14 @@ export const resolve: PresentationPluginOptions['resolve'] = {
       }),
     }),
   },
+  mainDocuments: [
+    {
+      route: '/news/:slug',
+      filter: `_type == "news" && slug.current == $slug`,
+    },
+    {
+      route: '/company',
+      filter: `_type == "companyInfo"`,
+    },
+  ],
 }

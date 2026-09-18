@@ -8,6 +8,8 @@ import {structure} from './src/structure'
 import {jaOverrides} from './src/i18n/ja-overrides'
 import {resolve} from './src/presentation/resolve'
 
+const previewUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
+
 export default defineConfig({
   name: 'default',
   title: 'sanity-proj',
@@ -20,7 +22,7 @@ export default defineConfig({
     presentationTool({
       resolve,
       previewUrl: {
-        origin: 'http://localhost:3000',
+        origin: previewUrl,
         previewMode: {
           enable: '/api/draft-mode/enable',
         },
