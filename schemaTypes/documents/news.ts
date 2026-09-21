@@ -1,6 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {DocumentTextIcon} from '@sanity/icons/DocumentText'
 import {japaneseSlugify} from '../../src/lib/japaneseSlugify'
+import {NewsCategoryInput} from '../../src/components/NewsCategoryInput'
 
 export const news = defineType({
   name: 'news',
@@ -47,6 +48,9 @@ export const news = defineType({
       title: 'カテゴリ',
       type: 'reference',
       to: [{type: 'newsCategory'}],
+      components: {
+        input: NewsCategoryInput,
+      },
     }),
     defineField({
       name: 'excerpt',
