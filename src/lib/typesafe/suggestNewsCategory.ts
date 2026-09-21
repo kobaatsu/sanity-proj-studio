@@ -21,7 +21,12 @@ export const NONE_OPTION_ID = '__none__'
  *
  * ブラウザ (Sanity Studio) から TypeSafe API を直接呼ぶと CORS で
  * ブロックされるため、web-nextjs 側の Route Handler を経由する。
- * エンドポイントの向き先は Presentation Tool と同じ SANITY_STUDIO_PREVIEW_URL を流用する。
+ *
+ * エンドポイントの向き先は SANITY_STUDIO_TYPESAFE_PROXY_URL で指定する。
+ * Presentation Tool の SANITY_STUDIO_PREVIEW_URL とは用途が異なる
+ * （PREVIEW_URLはローカル開発時にlocalhostを指すことが多く、
+ * デプロイ済みStudioからはlocalhostに到達できないため共用しない）。
+ * 未設定時は開発向けに http://localhost:3000 にフォールバックする。
  */
 export async function suggestNewsCategory(
   article: {title: string; body: string},
@@ -31,8 +36,8 @@ export async function suggestNewsCategory(
     throw new Error('カテゴリーが1件も登録されていません。先にお知らせカテゴリを作成してください。')
   }
 
-  const previewUrl = import.meta.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
-  const endpoint = new URL('/api/typesafe/suggest-news-category', previewUrl).toString()
+  const proxyUrl = import.meta.env.SANITY_STUDIO_TYPESAFE_PROXY_URL || 'http://localhost:3000'
+  const endpoint = new URL('/api/typesafe/suggest-news-category', proxyUrl).toString()
   const internalSecret = import.meta.env.SANITY_STUDIO_INTERNAL_API_SECRET as string | undefined
 
   const response = await fetch(endpoint, {
