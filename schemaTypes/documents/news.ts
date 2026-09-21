@@ -45,17 +45,8 @@ export const news = defineType({
     defineField({
       name: 'category',
       title: 'カテゴリ',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'お知らせ', value: 'general'},
-          {title: 'プレスリリース', value: 'press'},
-          {title: 'イベント', value: 'event'},
-          {title: '製品情報', value: 'product'},
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'general',
+      type: 'reference',
+      to: [{type: 'newsCategory'}],
     }),
     defineField({
       name: 'excerpt',
