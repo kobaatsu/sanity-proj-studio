@@ -18,6 +18,7 @@
   "dependencies": {
     "@sanity/icons": "^5.2.2",
     "@sanity/locale-ja-jp": "^1.1.40",
+    "@sanity/ui": "^4.2.1",
     "@sanity/vision": "^6.15.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
@@ -26,10 +27,11 @@
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^7.0.0",
+    "@types/node": "^26.6.2",
     "@types/react": "^19.3.0",
     "eslint": "^10.11.0",
     "prettier": "^3.9.8",
-    "typescript": "^7.0.2"
+    "typescript": "^5.9.3"
   },
   "prettier": {
     "bracketSpacing": false,
