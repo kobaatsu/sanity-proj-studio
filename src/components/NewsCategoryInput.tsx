@@ -3,7 +3,7 @@ import {Button, Card, Flex, Stack, Text} from '@sanity/ui'
 import {SparklesIcon} from '@sanity/icons/Sparkles'
 import {type ReferenceInputProps, set, useClient, useFormValue} from 'sanity'
 import {suggestNewsCategory, NONE_OPTION_ID} from '../lib/typesafe/suggestNewsCategory'
-import {portableTextToPlainText} from '../lib/portableTextToPlainText'
+import {newsBodyToPlainText} from '../lib/portableTextToPlainText'
 
 const API_VERSION = '2026-02-01'
 
@@ -22,13 +22,13 @@ export function NewsCategoryInput(props: ReferenceInputProps) {
   const {onChange, renderDefault} = props
   const client = useClient({apiVersion: API_VERSION})
   const title = useFormValue(['title']) as string | undefined
-  const body = useFormValue(['body']) as unknown
+  const body = useFormValue(['body'])
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [suggestion, setSuggestion] = useState<Suggestion | null>(null)
 
-  const plainBody = portableTextToPlainText(body)
+  const plainBody = newsBodyToPlainText(body)
   const isBodyEmpty = plainBody.length === 0
 
   const handleSuggest = useCallback(async () => {
