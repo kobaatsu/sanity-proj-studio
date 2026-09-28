@@ -19,5 +19,8 @@ export default defineCliConfig({
     schema: 'schema.json',
     generates: '../web/sanity.types.ts',
     overloadClientMethods: true,
+    // 出力先 web/ の prettier 設定が参照するプラグインを studio/ から解決できず整形が失敗するため無効化
+    // （生成ファイルは web/.prettierignore で整形対象外）
+    formatGeneratedCode: false,
   },
 })
